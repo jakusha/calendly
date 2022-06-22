@@ -1,26 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-// import EventForm from "./EventForm";
+import { months } from "./utils/allinfo";
 
-const DayGrid = ({ day, events }) => {
-	// const [showForm, setShowForm] = useState(false);
-	const [clicked, setClicked] = useState(false);
+const DayGrid = ({ currentitem, globalEvent, setGlobalEvent }) => {
+	const { date, events } = currentitem;
 
-	function handleClick(num) {
-		// setShowForm(!showForm);
-		setClicked(!clicked);
-		console.log(num);
+	function handleClick() {
+		setGlobalEvent({
+			day: currentitem.day, //means day of the week
+			date: currentitem.date, //means date
+			month: months[currentitem.month],
+			events: [...events],
+			year: currentitem.year,
+		});
 	}
 
 	return (
-		<div
-			className={day ? "day-grid" : null}
-			onClick={() => handleClick(day)}
-			style={{ background: clicked ? "green" : null }}
+		<StyledDay
+			className={date ? "day-grid" : null}
+			onClick={currentitem.date && handleClick}
+			style={{
+				background:
+					globalEvent.date === date &&
+					globalEvent.year === currentitem.year &&
+					globalEvent.month === months[currentitem.month]
+						? "green"
+						: null,
+			}}
 		>
-			{day}
-			{/* {showForm ? <EventForm /> : null} */}
-		</div>
+			{date}
+			{currentitem.events.length >= 1 ? (
+				<div className="active"></div>
+			) : null}
+		</StyledDay>
 	);
 };
 
@@ -28,4 +40,14 @@ export default DayGrid;
 
 const StyledDay = styled.div`
 	position: relative;
+
+	.active {
+		width: 8px;
+		border-radius: 50%;
+		height: 8px;
+		position: absolute;
+		bottom: 5px;
+		background-color: red;
+		left: 45%;
+	}
 `;

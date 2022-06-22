@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { saveDateData } from "./utils/allinfo";
-import { months } from "./utils/allinfo";
-import { v4 as uuidv4 } from "uuid";
-
-const EventForm = ({ setClicked, setGlobalEvent, globalEvent }) => {
+import { months, editDateData, deleteDateData } from "./utils/allinfo";
+const EditForm = ({ data, globalEvent, setEditFormToggle }) => {
 	const [state, setState] = useState({
-		title: "",
-		startDate: "",
-		endDate: "",
-		description: "",
-		id: "",
+		title: data.title,
+		startDate: data.startDate,
+		endDate: data.endDate,
+		description: data.description,
 	});
 
 	function formhandler(e, name) {
@@ -22,21 +18,38 @@ const EventForm = ({ setClicked, setGlobalEvent, globalEvent }) => {
 		if (state.title.trim().length < 1) {
 			console.log("invalid Input");
 		} else {
-			setGlobalEvent({
-				...globalEvent,
-				events: [{ ...state }],
-			});
-
-			saveDateData(globalEvent.year, months.indexOf(globalEvent.month), {
-				...globalEvent,
-				events: [{ ...state, id: uuidv4() }],
-			});
-			setClicked(false);
+			editDateData(
+				globalEvent.year,
+				globalEvent.date,
+				data.id,
+				months.indexOf(globalEvent.month),
+				{
+					...globalEvent,
+					events: [{ ...state }],
+				}
+			);
+			setEditFormToggle(false);
 		}
 	}
+
+	function deleteHandler() {
+		deleteDateData(
+			globalEvent.year,
+			globalEvent.date,
+			data.id,
+			months.indexOf(globalEvent.month),
+			{
+				...globalEvent,
+				events: [{ ...state }],
+			}
+		);
+		setEditFormToggle(false);
+	}
+
 	return (
 		<StyledDiv>
 			<StyledForm>
+				<h2>Edit Form</h2>
 				<form onSubmit={submitHandler}>
 					<div>
 						<label>Title</label>
@@ -76,15 +89,18 @@ const EventForm = ({ setClicked, setGlobalEvent, globalEvent }) => {
 						/>
 					</div>
 					<button>Add Event</button>
+					<button onClick={() => setEditFormToggle(false)}>
+						Close
+					</button>
 
-					<button onClick={() => setClicked(false)}>Close</button>
+					<button onClick={deleteHandler}>Delete</button>
 				</form>
 			</StyledForm>
 		</StyledDiv>
 	);
 };
 
-export default EventForm;
+export default EditForm;
 
 const StyledDiv = styled.div`
 	position: fixed;

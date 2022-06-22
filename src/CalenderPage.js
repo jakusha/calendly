@@ -1,48 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import DayGrid from "./DayGrid";
-import { createCalendarDates, months } from "./utils/allinfo";
+import { v4 as uuidv4 } from "uuid";
+import { getDateData } from "./utils/allinfo";
 
-const CalenderPage = () => {
-	const [calenderDates, setCalenderDates] = useState();
-	//count - {month: 0, year: 0}
-	const [count, setCount] = useState();
-
-	useEffect(() => {
-		//initial render
-		const cal = new Date();
-		setCount({ month: cal.getMonth(), year: cal.getFullYear() });
-		setCalenderDates(() =>
-			createCalendarDates(cal.getFullYear(), cal.getMonth())
-		);
-	}, []);
-
-	useEffect(() => {
-		//subsequentrenders
-		if (count) {
-			console.log("changeing");
-			setCalenderDates(() =>
-				createCalendarDates(count.year, count.month)
-			);
-		}
-	}, [count]);
-
-	function increaseDate() {
-		if (count.month < 11) {
-			setCount({ ...count, month: count.month + 1 });
-		} else {
-			setCount({ month: 0, year: count.year + 1 });
-		}
-	}
-
-	function decreaseDate() {
-		if (count.month > 0) {
-			setCount({ ...count, month: count.month - 1 });
-		} else {
-			setCount({ month: 11, year: count.year - 1 });
-		}
-	}
-
+const CalenderPage = ({
+	count,
+	increaseDate,
+	decreaseDate,
+	calenderDates,
+	months,
+	globalEvent,
+	setGlobalEvent,
+}) => {
 	return (
 		<StyledCalender>
 			<h1> Calender</h1>
@@ -61,13 +31,32 @@ const CalenderPage = () => {
 			</div>
 			<CalenderGrid className="calender-grid">
 				{calenderDates &&
-					calenderDates.map((item, index) => (
-						<DayGrid
-							day={item.day}
-							events={item.events}
-							key={index}
-						/>
-					))}
+					calenderDates.map((item) => {
+						const dataFromDb = getDateData(
+							count.year,
+							count.month,
+							item.date
+						);
+
+						return dataFromDb === undefined ? (
+							<DayGrid
+								currentitem={item}
+								key={uuidv4()}
+								globalEvent={globalEvent}
+								setGlobalEvent={setGlobalEvent}
+							/>
+						) : (
+							<DayGrid
+								currentitem={{
+									...dataFromDb,
+									month: count.month,
+								}} //had to do this getDateData returns month in words instead of numbers
+								key={uuidv4()}
+								globalEvent={globalEvent}
+								setGlobalEvent={setGlobalEvent}
+							/>
+						);
+					})}
 			</CalenderGrid>
 		</StyledCalender>
 	);
