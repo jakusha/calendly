@@ -24,7 +24,13 @@ const DayGrid = ({ currentitem, globalEvent, setGlobalEvent }) => {
 					globalEvent.date === date &&
 					globalEvent.year === currentitem.year &&
 					globalEvent.month === months[currentitem.month]
-						? "green"
+						? "#046e8f"
+						: null,
+				color:
+					globalEvent.date === date &&
+					globalEvent.year === currentitem.year &&
+					globalEvent.month === months[currentitem.month]
+						? "#fff"
 						: null,
 			}}
 		>
@@ -40,14 +46,26 @@ export default DayGrid;
 
 const StyledDay = styled.div`
 	position: relative;
-
+	padding: 4px 0;
 	.active {
 		width: 8px;
 		border-radius: 50%;
 		height: 8px;
 		position: absolute;
-		bottom: 5px;
-		background-color: red;
-		left: 45%;
+		bottom: 4px;
+		background-color: #990100;
+		left: 16px;
+	}
+
+	@media (min-width: 400px) {
+		.active {
+			left: 45%;
+		}
+	}
+	@media (min-width: 1000px) {
+		.active {
+			bottom: 4px;
+			left: 36px;
+		}
 	}
 `;

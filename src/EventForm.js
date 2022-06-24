@@ -17,10 +17,11 @@ const EventForm = ({ setClicked, setGlobalEvent, globalEvent }) => {
 		setState({ ...state, [name]: e.target.value });
 	}
 
+	const [inputError, setInputError] = useState(false);
 	function submitHandler(e) {
 		e.preventDefault();
 		if (state.title.trim().length < 1) {
-			console.log("invalid Input");
+			setInputError(true);
 		} else {
 			setGlobalEvent({
 				...globalEvent,
@@ -33,13 +34,17 @@ const EventForm = ({ setClicked, setGlobalEvent, globalEvent }) => {
 			});
 			setClicked(false);
 		}
+
+		setTimeout(() => {
+			setInputError(false);
+		}, 1000);
 	}
 	return (
 		<StyledDiv>
-			<StyledForm>
+			<StyledForm className={inputError ? "error" : null}>
 				<form onSubmit={submitHandler}>
-					<div>
-						<label>Title</label>
+					<div className="form-inputs">
+						<label>Title: </label>
 						<input
 							type={"text"}
 							value={state.title}
@@ -47,37 +52,55 @@ const EventForm = ({ setClicked, setGlobalEvent, globalEvent }) => {
 						/>
 					</div>
 
-					<div>
-						<div>
-							<label>Begins</label>
-							<input
-								type="datetime-local"
-								value={state.startDate}
-								onChange={(e) => formhandler(e, "startDate")}
-							/>
-						</div>
+					<div className="form-inputs">
+						<label>Begins: </label>
 
-						<div>
-							<label>End</label>
-							<input
-								type="datetime-local"
-								value={state.endDate}
-								onChange={(e) => formhandler(e, "endDate")}
-							/>
-						</div>
-					</div>
-
-					<div>
-						<label>Description</label>
 						<input
-							type="text"
-							value={state.description}
-							onChange={(e) => formhandler(e, "description")}
+							type="time"
+							value={state.startDate}
+							onChange={(e) => formhandler(e, "startDate")}
+							placeholder="hh:mm"
+						/>
+						<img
+							src="./images/clock.svg"
+							alt="clock"
+							className="clock"
 						/>
 					</div>
-					<button>Add Event</button>
 
-					<button onClick={() => setClicked(false)}>Close</button>
+					<div className="form-inputs">
+						<label>End: </label>
+						<input
+							type="time"
+							value={state.endDate}
+							onChange={(e) => formhandler(e, "endDate")}
+							placeholder="hh:mm"
+						/>
+						<img
+							src="./images/clock.svg"
+							alt="clock"
+							className="clock"
+						/>
+					</div>
+
+					<div className="form-inputs description">
+						<label>Description: </label>
+						<textarea
+							value={state.description}
+							onChange={(e) => formhandler(e, "description")}
+							className="description"
+						/>
+					</div>
+
+					<button className="edit-add">
+						Add Event <img src="./images/add.svg" alt="" />
+					</button>
+					<button
+						onClick={() => setClicked(false)}
+						className="close-btn"
+					>
+						<img src="./images/close.svg" alt="close" />
+					</button>
 				</form>
 			</StyledForm>
 		</StyledDiv>
@@ -90,19 +113,199 @@ const StyledDiv = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
-	height: 100vh;
+	min-height: 100vh;
 	width: 100vw;
-	background: grey;
-	opacity: 0.8;
+	background: rgb(100 88 88 / 80%);
 	display: grid;
 	place-content: center;
 	z-index: 103;
 `;
 const StyledForm = styled.div`
-	border: solid;
-	width: 60vw;
+	border-radius: 8px;
+	width: min(80vw, 600px);
 	background: white;
 	padding: 32px;
+	padding-top: 60px;
 	color: black;
 	z-index: 105;
+	position: relative;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+	h2 {
+		font-size: 2rem;
+	}
+
+	button {
+		cursor: pointer;
+		background: transparent;
+		border: 0;
+		img {
+			width: 25px;
+		}
+	}
+
+	button:hover {
+		background: lightblue;
+		border-radius: 8px;
+	}
+
+	.form-inputs {
+		display: flex;
+		margin-bottom: 12px;
+		position: relative;
+
+		label {
+			font-size: 1.1rem;
+			margin-top: 8px;
+			align-self: center;
+		}
+		input {
+			flex-basis: 70%;
+			width: 100%;
+
+			margin-left: auto;
+			outline: 0;
+			border: 0;
+			border-bottom: 2px solid;
+			padding: 8px;
+			font-size: 1.1rem;
+		}
+
+		textarea {
+			flex-basis: 70%;
+			height: 150px;
+			outline: 0;
+			font-size: 1.1rem;
+		}
+
+		&.description {
+			display: revert;
+			label {
+				display: block;
+				margin-bottom: 8px;
+			}
+
+			textarea {
+				width: 100%;
+			}
+		}
+	}
+
+	.close-btn {
+		position: absolute;
+		left: 8px;
+		top: 8px;
+
+		img {
+			width: 35px;
+		}
+	}
+
+	.edit-add {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 12px;
+		border-radius: 8px;
+		background: lightblue;
+		margin-left: auto;
+		margin-top: 8px;
+		z-index: 200;
+		img {
+			width: 20px;
+		}
+	}
+
+	input[type="time"] {
+		cursor: pointer;
+	}
+
+	input[type="time"]::-webkit-calendar-picker-indicator {
+		width: 55%;
+		position: absolute;
+		background: transparent;
+		cursor: pointer;
+		padding: 12px;
+		right: 40px;
+	}
+
+	.clock {
+		width: 25px;
+		position: absolute;
+		right: 16px;
+		top: 8px;
+	}
+
+	@media (min-width: 1000px) {
+		max-width: 600px;
+		background: white;
+		padding: 40px;
+		padding-top: 60px;
+		color: black;
+		z-index: 105;
+		position: relative;
+
+		button {
+			cursor: pointer;
+			background: transparent;
+			border: 0;
+			img {
+				width: 30px;
+			}
+		}
+
+		.clock {
+			width: 30px;
+			position: absolute;
+			right: 16px;
+			top: 8px;
+		}
+	}
+
+	input {
+		width: 100%;
+		font-size: 1rem;
+		padding: 0.25rem;
+		vertical-align: middle;
+		box-shadow: 0 0 0 transparent;
+		border: 1px solid #999;
+		outline: 0 none;
+		transition: box-shadow 0.5s;
+	}
+
+	&.error {
+		border: 3px solid red;
+		animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+		transform: translate3d(0, 0, 0);
+		box-shadow: 0 0 0.5em red;
+
+		input,
+		textarea {
+			box-shadow: 0 0 0.5em red;
+			border: 0;
+		}
+	}
+
+	@keyframes shake {
+		10%,
+		90% {
+			transform: translate3d(-1px, 0, 0);
+		}
+
+		20%,
+		80% {
+			transform: translate3d(2px, 0, 0);
+		}
+
+		30%,
+		50%,
+		70% {
+			transform: translate3d(-4px, 0, 0);
+		}
+
+		40%,
+		60% {
+			transform: translate3d(4px, 0, 0);
+		}
+	}
 `;

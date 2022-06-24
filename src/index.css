@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+
 *,
 *::before,
 *::after {
@@ -9,6 +12,7 @@
 html,
 body {
 	height: 100%;
+	font-family: 'Quicksand', sans-serif;
 }
 body {
 	line-height: 1.5;
@@ -41,3 +45,22 @@ h6 {
 #__next {
 	isolation: isolate;
 }
+
+/*  ligth-mode-text: rgb(45, 51, 79);
+	light-mode-calender-active-background: rgb(45, 51, 79);
+	light-mode-calender-active-event-background: rgb(45, 51, 79) put opacity;
+	light-mode-calender-active-text: white;
+	light-mode-calender-hover: rgb(89, 116, 189);
+*/
+
+
+/* 
+light-mode-calender-background: rgb(45, 51, 79);
+	dark-mode-text:  rgb(199, 192, 224);
+	light-mode-calender-active-background: rgb(89, 116, 189);
+	light-mode-calender-active-event-background: rrgb(141, 148, 199)
+	light-mode-calender-active-text: rgb(191, 207, 247);
+	light-mode-calender-hover: rgb(89, 116, 189);
+*/
+
+/* <div class="Theme__theme___2NcED"><div class="Swatch__swatch___3njYU Swatch__swatch___3njYU" style="background: rgb(191, 207, 247);"></div><div class="Swatch__swatch___3njYU Swatch__swatch___3njYU" style="background: rgb(89, 116, 189);"></div><div class="Swatch__swatch___3njYU Swatch__swatch___3njYU" style="background: rgb(45, 51, 79);"></div><div class="Swatch__swatch___3njYU Swatch__swatch___3njYU" style="background: rgb(141, 148, 199);"></div><div class="Swatch__swatch___3njYU Swatch__swatch___3njYU" style="background: rgb(199, 192, 224);"></div></div> */

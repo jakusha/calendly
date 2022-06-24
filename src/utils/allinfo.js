@@ -247,6 +247,20 @@ function deleteDateData(year, eventDate, eventId, month, event) {
 		})
 	);
 }
+
+function converTimeToAMPm(timeString) {
+	const timeString12hr = new Date(
+		"1970-01-01T" + timeString + "Z"
+	).toLocaleTimeString("en-US", {
+		timeZone: "UTC",
+		hour12: true,
+		hour: "numeric",
+		minute: "numeric",
+	});
+
+	return timeString12hr;
+}
+
 export {
 	monthsYearInfo,
 	createCalendarDates,
@@ -256,4 +270,5 @@ export {
 	getDateData,
 	editDateData,
 	deleteDateData,
+	converTimeToAMPm,
 };

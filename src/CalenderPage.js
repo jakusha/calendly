@@ -15,14 +15,24 @@ const CalenderPage = ({
 }) => {
 	return (
 		<StyledCalender>
-			<h1> Calender</h1>
+			<h1>
+				{" "}
+				Calendly <img src="./images/calendar.svg" alt="" />
+			</h1>
 
-			<div>
-				<button onClick={decreaseDate}>left</button>
-				<span>{count && months[count.month]}</span>
-				<span>{count && count.year}</span>
+			<div className="calender-month-info">
+				<button onClick={decreaseDate}>
+					<img src="./images/chevron_left.svg" alt="" />
+				</button>
 
-				<button onClick={increaseDate}>right</button>
+				<div className="calender-month-info-heading">
+					<span>{count && months[count.month]}</span>
+					<span>{count && count.year}</span>
+				</div>
+
+				<button onClick={increaseDate}>
+					<img src="./images/chevron_right.svg" alt="" />
+				</button>
 			</div>
 			<div className="calender-days">
 				<span>Mon</span> <span>Tue</span> <span>Wed</span>{" "}
@@ -64,11 +74,27 @@ const CalenderPage = ({
 export default CalenderPage;
 
 const StyledCalender = styled.div`
-	border: solid deeppink;
+	// border: solid deeppink;
+	padding: 16px;
+	h1 {
+		font-size: 3rem;
+		text-align: center;
+		margin: 8px 0 8px 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		img {
+			width: 40px;
+		}
+	}
 	.calender-days {
 		display: flex;
 		border-bottom: 1px solid pink;
-		margin-bottom: 24px;
+		margin-bottom: 16px;
+		font-size: 1.2rem;
+		// border: solid orange;
+		font-weight: 700;
 		span {
 			flex: 1;
 			text-align: center;
@@ -76,25 +102,88 @@ const StyledCalender = styled.div`
 		}
 	}
 
-	@media (min-width: 750px) {
-		width: max-content;
+	.calender-month-info {
+		// border: solid;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		button {
+			background-color: transparent;
+			border: none;
+			padding: 4px;
+		}
+
+		button:hover {
+			background: ${({ theme }) => theme.calenderHover};
+			border-radius: 4px;
+			padding: 4px;
+		}
+		img {
+			width: 40px;
+		}
+	}
+
+	.calender-month-info-heading {
+		font-size: 1.5rem;
+		font-weight: 600;
+		span {
+			margin: 0 8px;
+		}
+	}
+
+	@media (min-width: 1000px) {
+		padding: 0;
+
+		.calender-month-info {
+			// border: solid;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			button {
+				background-color: transparent;
+				border: none;
+				cursor: pointer;
+				padding: 8px;
+				margin: 0 32px;
+			}
+
+			button:hover {
+				background: ${({ theme }) => theme.calenderHover};
+				border-radius: 4px;
+				padding: 8px;
+			}
+			img {
+				width: 30px;
+			}
+		}
 	}
 `;
 const CalenderGrid = styled.div`
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	border: solid;
-	@media (min-width: 750px) {
-		grid-template-columns: repeat(7, 55px);
-		grid-template-rows: repeat(5, 50px);
+	grid-template-rows: repeat(6, 50px);
+	gap: 8px;
+
+	// border: solid green;
+	@media (min-width: 1000px) {
+		grid-template-rows: repeat(6, 60px);
+		gap: 8px;
 	}
 
 	.day-grid {
 		cursor: pointer;
-		border: solid;
+		// border: 1px solid;
+		display: grid;
+		place-content: center;
+		font-size: 1.5rem;
+		font-weight: 700;
+		border-radius: 4px;
 	}
 
 	.day-grid:hover {
-		border: solid green;
+		background: ${({ theme }) => theme.calenderHover};
+		color: white;
 	}
 `;

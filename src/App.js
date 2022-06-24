@@ -1,14 +1,33 @@
 import CalenderPage from "./CalenderPage";
 import Event from "./Event";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
+
+import { lightMode, darkMode } from "./Themes";
 import { createCalendarDates, months, days } from "./utils/allinfo";
 
 import React, { useState, useEffect } from "react";
+import { GlobalStyles } from "./globalStyles";
 function App() {
 	const [calenderDates, setCalenderDates] = useState();
 	//count - {month: 0, year: 0}
 	const [globalEvent, setGlobalEvent] = useState();
 	const [count, setCount] = useState();
+	const [theme, setTheme] = useState("light");
+
+	const setMode = (mode) => {
+		window.localStorage.setItem("theme", mode);
+		setTheme(mode);
+	};
+
+	useEffect(() => {
+		const localTheme = window.localStorage.getItem("theme");
+		localTheme && setTheme(localTheme);
+	}, []);
+
+	const themeToggler = () => {
+		theme === "light" ? setMode("dark") : setMode("light");
+	};
+
 	useEffect(() => {
 		//initial render
 		const cal = new Date();
@@ -52,33 +71,91 @@ function App() {
 	}
 
 	return (
-		<StyledDiv>
-			<CalenderPage
-				count={count}
-				increaseDate={increaseDate}
-				decreaseDate={decreaseDate}
-				calenderDates={calenderDates}
-				months={months}
-				globalEvent={globalEvent}
-				setGlobalEvent={setGlobalEvent}
-			/>
-			{globalEvent && (
-				<Event
-					globalEvent={globalEvent}
-					setGlobalEvent={setGlobalEvent}
-				/>
-			)}
-		</StyledDiv>
+		<ThemeProvider theme={theme === "light" ? lightMode : darkMode}>
+			<GlobalStyles />
+			<StyledMain>
+				<StyledDiv>
+					<button onClick={themeToggler} className="mode-toggle">
+						{theme === "light" ? (
+							<img src="./images/dark_mode.svg" alt="" />
+						) : (
+							<img src="./images/light_mode.svg" alt="" />
+						)}
+					</button>
+					<CalenderPage
+						count={count}
+						increaseDate={increaseDate}
+						decreaseDate={decreaseDate}
+						calenderDates={calenderDates}
+						months={months}
+						globalEvent={globalEvent}
+						setGlobalEvent={setGlobalEvent}
+					/>
+					{globalEvent && (
+						<Event
+							globalEvent={globalEvent}
+							setGlobalEvent={setGlobalEvent}
+						/>
+					)}
+				</StyledDiv>
+			</StyledMain>
+		</ThemeProvider>
 	);
 }
 
 export default App;
 
+const StyledMain = styled.div`
+	@media (min-width: 1000px) {
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-conetnt: center;
+	}
+`;
 const StyledDiv = styled.div`
 	display: grid;
+	position: relative;
 
-	@media (min-width: 750px) {
+	.mode-toggle {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		z-index: 3;
+		cursor: pointer;
+		background: transparent;
+		border: 0;
+
+		img {
+			width: 40px;
+		}
+	}
+
+	@media (min-width: 1000px) {
 		grid-template-columns: 1fr 1fr;
-		border: solid;
+		width: 900px;
+		margin: 0 auto;
+		place-content: center;
+		height: 90vh;
+		padding: 8px;
+		border-radius: 8px;
+		box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+			rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+		.mode-toggle {
+			position: absolute;
+			top: 16px;
+			right: 16px;
+			z-index: 3;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		grid-template-columns: 1fr 1fr;
+		width: 1200px;
+		margin: 0 auto;
+		place-content: center;
+		height: 90vh;
+		padding: 8px;
+		border-radius: 8px;
 	}
 `;
