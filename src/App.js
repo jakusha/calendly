@@ -100,6 +100,15 @@ function App() {
 						/>
 					)}
 				</StyledDiv>
+				<p className="ebube">
+					Coded by{" "}
+					<a
+						href="https://github.com/Bube-create/calendly"
+						className="e"
+					>
+						Ebube{" "}
+					</a>{" "}
+				</p>
 			</StyledMain>
 		</ThemeProvider>
 	);
@@ -108,11 +117,24 @@ function App() {
 export default App;
 
 const StyledMain = styled.div`
+	position: realtive;
+
+	.ebube {
+		display: none;
+	}
 	@media (min-width: 1000px) {
 		height: 100vh;
 		display: flex;
 		align-items: center;
 		justify-conetnt: center;
+
+		.ebube {
+			display: revert;
+			position: absolute;
+			bottom: 40px;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
 	}
 `;
 const StyledDiv = styled.div`
