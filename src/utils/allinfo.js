@@ -259,9 +259,16 @@ function converTimeToAMPm(timeString) {
 	});
 
 	return timeString12hr === "Invalid Date"
-		? converTimeToAMPm(
-				`${new Date().getHours()}:${new Date().getMinutes()}`
-		  )
+		? new Date(
+				"1970-01-01T" +
+					`${new Date().getHours()}:${new Date().getMinutes()}` +
+					"Z"
+		  ).toLocaleTimeString("en-US", {
+				timeZone: "UTC",
+				hour12: true,
+				hour: "numeric",
+				minute: "numeric",
+		  })
 		: timeString12hr;
 }
 
