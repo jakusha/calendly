@@ -236,7 +236,7 @@ const StyledForm = styled.div`
 		width: 25px;
 		position: absolute;
 		right: 16px;
-		top: 16px;
+		top: 8px;
 	}
 
 	@media (min-width: 1000px) {
