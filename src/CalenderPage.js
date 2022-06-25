@@ -12,17 +12,27 @@ const CalenderPage = ({
 	months,
 	globalEvent,
 	setGlobalEvent,
+	theme,
 }) => {
 	return (
 		<StyledCalender>
 			<h1>
 				{" "}
-				Calendly <img src="./images/calendar.svg" alt="" />
+				Calendly{" "}
+				{theme === "light" ? (
+					<img src="./images/calendar.svg" alt="" />
+				) : (
+					<img src="./images/calendar-light.svg" alt="" />
+				)}
 			</h1>
 
 			<div className="calender-month-info">
 				<button onClick={decreaseDate}>
-					<img src="./images/chevron_left.svg" alt="" />
+					{theme === "light" ? (
+						<img src="./images/chevron_left.svg" alt="" />
+					) : (
+						<img src="./images/chevron_left-light.svg" alt="" />
+					)}
 				</button>
 
 				<div className="calender-month-info-heading">
@@ -31,7 +41,11 @@ const CalenderPage = ({
 				</div>
 
 				<button onClick={increaseDate}>
-					<img src="./images/chevron_right.svg" alt="" />
+					{theme === "light" ? (
+						<img src="./images/chevron_right.svg" alt="" />
+					) : (
+						<img src="./images/chevron_right-light.svg" alt="" />
+					)}
 				</button>
 			</div>
 			<div className="calender-days">
@@ -75,7 +89,7 @@ export default CalenderPage;
 
 const StyledCalender = styled.div`
 	// border: solid deeppink;
-	padding: 16px;
+	padding-top: 64px;
 	h1 {
 		font-size: 3rem;
 		text-align: center;
@@ -90,7 +104,7 @@ const StyledCalender = styled.div`
 	}
 	.calender-days {
 		display: flex;
-		border-bottom: 1px solid pink;
+		border-bottom: 1px solid;
 		margin-bottom: 16px;
 		font-size: 1.2rem;
 		// border: solid orange;
@@ -102,6 +116,9 @@ const StyledCalender = styled.div`
 		}
 	}
 
+	button {
+		cursor: pointer;
+	}
 	.calender-month-info {
 		// border: solid;
 		display: flex;

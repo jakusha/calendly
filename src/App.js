@@ -90,11 +90,13 @@ function App() {
 						months={months}
 						globalEvent={globalEvent}
 						setGlobalEvent={setGlobalEvent}
+						theme={theme}
 					/>
 					{globalEvent && (
 						<Event
 							globalEvent={globalEvent}
 							setGlobalEvent={setGlobalEvent}
+							theme={theme}
 						/>
 					)}
 				</StyledDiv>

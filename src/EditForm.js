@@ -17,8 +17,10 @@ const EditForm = ({ data, globalEvent, setEditFormToggle }) => {
 	function submitHandler(e) {
 		e.preventDefault();
 		if (state.title.trim().length < 1) {
+			console.log("hello");
 			setInputError(true);
 		} else {
+			console.log("hello there");
 			editDateData(
 				globalEvent.year,
 				globalEvent.date,
@@ -57,22 +59,24 @@ const EditForm = ({ data, globalEvent, setEditFormToggle }) => {
 				<h2>Edit Event</h2>
 				<form onSubmit={submitHandler}>
 					<div className="form-inputs">
-						<label>Title: </label>
+						<label htmlFor="title">Title: </label>
 						<input
 							type={"text"}
 							value={state.title}
 							onChange={(e) => formhandler(e, "title")}
+							id="title"
 						/>
 					</div>
 
 					<div className="form-inputs">
-						<label>Begins: </label>
+						<label htmlFor="startdate">Begins: </label>
 
 						<input
 							type="time"
 							value={state.startDate}
 							onChange={(e) => formhandler(e, "startDate")}
 							placeholder="hh:mm"
+							id="startdate"
 						/>
 						<img
 							src="./images/clock.svg"
@@ -82,12 +86,13 @@ const EditForm = ({ data, globalEvent, setEditFormToggle }) => {
 					</div>
 
 					<div className="form-inputs">
-						<label>End: </label>
+						<label htmlFor="enddate">End: </label>
 						<input
 							type="time"
 							value={state.endDate}
 							onChange={(e) => formhandler(e, "endDate")}
 							placeholder="hh:mm"
+							id="enddate"
 						/>
 						<img
 							src="./images/clock.svg"
@@ -97,11 +102,12 @@ const EditForm = ({ data, globalEvent, setEditFormToggle }) => {
 					</div>
 
 					<div className="form-inputs description">
-						<label>Description: </label>
+						<label htmlFor="description">Description: </label>
 						<textarea
 							value={state.description}
 							onChange={(e) => formhandler(e, "description")}
 							className="description"
+							id="description"
 						/>
 					</div>
 
@@ -163,7 +169,7 @@ const StyledForm = styled.div`
 
 	.form-inputs {
 		display: flex;
-		margin-bottom: 12px;
+		margin-bottom: 16px;
 		position: relative;
 
 		label {
@@ -172,13 +178,12 @@ const StyledForm = styled.div`
 			align-self: center;
 		}
 		input {
-			flex-basis: 70%;
-			width: 100%;
+			width: 65%;
 			margin-left: auto;
 			outline: 0;
 			border: 0;
 			border-bottom: 2px solid;
-			padding: 8px;
+			padding: 12px;
 			font-size: 1.1rem;
 		}
 
@@ -204,8 +209,8 @@ const StyledForm = styled.div`
 
 	.close-btn {
 		position: absolute;
-		left: 8px;
-		top: 8px;
+		left: 12px;
+		top: 12px;
 
 		img {
 			width: 35px;
@@ -255,7 +260,7 @@ const StyledForm = styled.div`
 		width: 25px;
 		position: absolute;
 		right: 16px;
-		top: 8px;
+		top: 16px;
 	}
 
 	@media (min-width: 1000px) {
@@ -292,41 +297,40 @@ const StyledForm = styled.div`
 			right: 16px;
 			top: 8px;
 		}
+	}
 
-		&.error {
-			border: 3px solid red;
-			animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-			transform: translate3d(0, 0, 0);
+	&.error {
+		border: 3px solid red;
+		animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+		transform: translate3d(0, 0, 0);
+		box-shadow: 0 0 0.5em red;
+
+		input#title {
 			box-shadow: 0 0 0.5em red;
+			border: 0;
+		}
+	}
 
-			input,
-			textarea {
-				box-shadow: 0 0 0.5em red;
-				border: 0;
-			}
+	@keyframes shake {
+		10%,
+		90% {
+			transform: translate3d(-1px, 0, 0);
 		}
 
-		@keyframes shake {
-			10%,
-			90% {
-				transform: translate3d(-1px, 0, 0);
-			}
+		20%,
+		80% {
+			transform: translate3d(2px, 0, 0);
+		}
 
-			20%,
-			80% {
-				transform: translate3d(2px, 0, 0);
-			}
+		30%,
+		50%,
+		70% {
+			transform: translate3d(-4px, 0, 0);
+		}
 
-			30%,
-			50%,
-			70% {
-				transform: translate3d(-4px, 0, 0);
-			}
-
-			40%,
-			60% {
-				transform: translate3d(4px, 0, 0);
-			}
+		40%,
+		60% {
+			transform: translate3d(4px, 0, 0);
 		}
 	}
 `;

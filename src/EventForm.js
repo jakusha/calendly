@@ -44,22 +44,24 @@ const EventForm = ({ setClicked, setGlobalEvent, globalEvent }) => {
 			<StyledForm className={inputError ? "error" : null}>
 				<form onSubmit={submitHandler}>
 					<div className="form-inputs">
-						<label>Title: </label>
+						<label htmlFor="title">Title: </label>
 						<input
 							type={"text"}
 							value={state.title}
 							onChange={(e) => formhandler(e, "title")}
+							id="title"
 						/>
 					</div>
 
 					<div className="form-inputs">
-						<label>Begins: </label>
+						<label htmlFor="startdate">Begins: </label>
 
 						<input
 							type="time"
 							value={state.startDate}
 							onChange={(e) => formhandler(e, "startDate")}
 							placeholder="hh:mm"
+							id="startdate"
 						/>
 						<img
 							src="./images/clock.svg"
@@ -69,12 +71,13 @@ const EventForm = ({ setClicked, setGlobalEvent, globalEvent }) => {
 					</div>
 
 					<div className="form-inputs">
-						<label>End: </label>
+						<label htmlFor="enddate">End: </label>
 						<input
 							type="time"
 							value={state.endDate}
 							onChange={(e) => formhandler(e, "endDate")}
 							placeholder="hh:mm"
+							id="enddate"
 						/>
 						<img
 							src="./images/clock.svg"
@@ -84,11 +87,12 @@ const EventForm = ({ setClicked, setGlobalEvent, globalEvent }) => {
 					</div>
 
 					<div className="form-inputs description">
-						<label>Description: </label>
+						<label htmlFor="description">Description: </label>
 						<textarea
 							value={state.description}
 							onChange={(e) => formhandler(e, "description")}
 							className="description"
+							id="description"
 						/>
 					</div>
 
@@ -151,7 +155,7 @@ const StyledForm = styled.div`
 
 	.form-inputs {
 		display: flex;
-		margin-bottom: 12px;
+		margin-bottom: 16px;
 		position: relative;
 
 		label {
@@ -160,14 +164,12 @@ const StyledForm = styled.div`
 			align-self: center;
 		}
 		input {
-			flex-basis: 70%;
-			width: 100%;
-
+			width: 65%;
 			margin-left: auto;
 			outline: 0;
 			border: 0;
 			border-bottom: 2px solid;
-			padding: 8px;
+			padding: 12px;
 			font-size: 1.1rem;
 		}
 
@@ -193,8 +195,8 @@ const StyledForm = styled.div`
 
 	.close-btn {
 		position: absolute;
-		left: 8px;
-		top: 8px;
+		left: 12px;
+		top: 12px;
 
 		img {
 			width: 35px;
@@ -233,7 +235,7 @@ const StyledForm = styled.div`
 		width: 25px;
 		position: absolute;
 		right: 16px;
-		top: 8px;
+		top: 16px;
 	}
 
 	@media (min-width: 1000px) {
@@ -279,8 +281,7 @@ const StyledForm = styled.div`
 		transform: translate3d(0, 0, 0);
 		box-shadow: 0 0 0.5em red;
 
-		input,
-		textarea {
+		input#title {
 			box-shadow: 0 0 0.5em red;
 			border: 0;
 		}

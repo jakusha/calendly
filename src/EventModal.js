@@ -117,17 +117,22 @@ const StyledMain = styled.div`
 	.edit-btn {
 		position: absolute;
 		right: 16px;
-		top: 16px;
+		top: 24px;
 	}
 
 	.close-btn {
 		position: absolute;
 		left: 8px;
-		top: 8px;
+		top: 16px;
 
 		img {
 			width: 35px;
 		}
+	}
+
+	button:hover {
+		background: lightblue;
+		border-radius: 8px;
 	}
 
 	.delete-btn {

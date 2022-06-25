@@ -6,7 +6,7 @@ import EventModal from "./EventModal";
 
 import { getDateData, months, converTimeToAMPm } from "./utils/allinfo";
 
-const Event = ({ setGlobalEvent, globalEvent }) => {
+const Event = ({ setGlobalEvent, globalEvent, theme }) => {
 	const { day, month, date } = globalEvent;
 	const [clicked, setClicked] = useState(false);
 	const [eventDataToDisplay, setEventDataToDisplay] = useState();
@@ -88,7 +88,11 @@ const Event = ({ setGlobalEvent, globalEvent }) => {
 					{eventDataToDisplay === undefined ? (
 						<div className="no-event">
 							{" "}
-							<img src="./images/calendar.svg" alt="" />
+							{theme === "light" ? (
+								<img src="./images/calendar.svg" alt="" />
+							) : (
+								<img src="./images/calendar-light.svg" alt="" />
+							)}
 							No Events ;)
 						</div>
 					) : (
@@ -99,10 +103,13 @@ const Event = ({ setGlobalEvent, globalEvent }) => {
 								key={item.id}
 								className="event-infos"
 							>
-								<h2>{item.title}</h2>
-								<span>{converTimeToAMPm(item.startDate)}</span>
-
-								{/* <span className="view">view</span> */}
+								<div>
+									<h2>{item.title}</h2>
+									<span>
+										{converTimeToAMPm(item.startDate)}
+									</span>
+								</div>
+								<span className="view">view</span>
 							</div>
 						))
 					)}
@@ -110,7 +117,11 @@ const Event = ({ setGlobalEvent, globalEvent }) => {
 					eventDataToDisplay.events.length < 1 ? (
 						<div className="no-event">
 							{" "}
-							<img src="./images/calendar.svg" alt="" />
+							{theme === "light" ? (
+								<img src="./images/calendar.svg" alt="" />
+							) : (
+								<img src="./images/calendar-light.svg" alt="" />
+							)}
 							No Events ;)
 						</div>
 					) : null}
@@ -207,8 +218,20 @@ const StyledDiv = styled.div`
 		position: relative;
 		padding: 12px;
 		padding-left: 16px;
-
+		display: flex;
+		justify-content: space-between;
 		margin-bottom: 16px;
+
+		.view {
+			align-self: center;
+			margin-right: 8px;
+		}
+
+		&:hover {
+			.view {
+				opacity: 0.7;
+			}
+		}
 	}
 
 	@media (min-width: 1000px) {
@@ -220,6 +243,7 @@ const StyledDiv = styled.div`
 			overflow-y: auto;
 			padding-top: 0px;
 			max-height: 60vh;
+
 		}
 
 		.event-day {

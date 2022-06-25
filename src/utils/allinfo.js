@@ -258,7 +258,11 @@ function converTimeToAMPm(timeString) {
 		minute: "numeric",
 	});
 
-	return timeString12hr;
+	return timeString12hr === "Invalid Date"
+		? converTimeToAMPm(
+				`${new Date().getHours()}:${new Date().getMinutes()}`
+		  )
+		: timeString12hr;
 }
 
 export {
