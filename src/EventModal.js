@@ -91,6 +91,7 @@ const StyledMain = styled.div`
 	h2 {
 		font-size: 2rem;
 		padding-top: 32px;
+		line-height: 1.1;
 	}
 
 	.item-title {

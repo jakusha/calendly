@@ -182,6 +182,7 @@ const StyledDiv = styled.div`
 	h2 {
 		font-size: 1.8rem;
 		font-weight: 600;
+		line-height: 1.1;
 	}
 
 	h3 {
