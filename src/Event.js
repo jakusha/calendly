@@ -180,7 +180,7 @@ const StyledDiv = styled.div`
 		}
 	}
 	h2 {
-		font-size: 2rem;
+		font-size: 1.8rem;
 		font-weight: 600;
 	}
 
@@ -221,7 +221,7 @@ const StyledDiv = styled.div`
 		display: flex;
 		justify-content: space-between;
 		margin-bottom: 16px;
-
+		line-height: 1.2;
 		.view {
 			align-self: center;
 			margin-right: 8px;

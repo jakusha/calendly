@@ -165,6 +165,7 @@ const StyledForm = styled.div`
 		}
 		input {
 			width: 65%;
+			flex-basis: 70%;
 			margin-left: auto;
 			outline: 0;
 			border: 0;
