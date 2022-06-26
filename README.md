@@ -1,73 +1,33 @@
-# Getting Started with Create React App
+# Calendly
 
+## Images
 
-# Currently In Progress........
+-   Live Site URL: [Add live site URL here]()
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+Calendly is a scheduling calender application where users can create, edit and also delete events created by them.
 
-In the project directory, you can run:
+## My process
 
-### `npm start`
+I got inspiration to create from ubuntus notification calender and also google calender, first of i started by genrating the days of the present month i was in, i used javascript Date Api to get them, then i rendered each day i.e(1-30/31) by using monday as my starting day and sunday as the last day of the week, the next step step was to get the next months or the previous months days so i added an increase button and reduce button and also a state to keep track of the present month and its days, after i was done with that, i added the creating of event functionality which had a modal form for the users to create events and also edit or delete them, i mapped each events to their corresponding month, then i stored them in the browser using localstorage, also i added a functionality to check if a particular month already had data stored so i could render that instead, after completing all the functionality i proceeded to style the application.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### The challenge
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-   Generation of dates was a bit challenging couldnt wrap my head around how to get the dates and their corrresponding days of the week example like (what day of the week is the 3rd of august, 2022). with some google searches i found the solution.
+-   Battled with a bug when i was rendering the days of each month was using keys from the map function, caused a lot of unexpected results, solved it by using uuid to create unique ids.
+-   Had challenges in the structuring the date and events to storage for easy crud operations , kept bumping into problems of storing it properly, had a lot of overriding issues instead of it appending to previous data. solved it by a lot of console logging and patience lol ;);
 
-### `npm test`
+### Built with
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   Javascript Date Api
+-   React
+-   Styled Components
 
-### `npm run build`
+### What I learned
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   I learnt about the javscript date api.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Continued development
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   I would like to implement a proper backend for it and add some functionalities like notification.
