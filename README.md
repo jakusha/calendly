@@ -29,7 +29,7 @@ I got inspiration to create from ubuntus notification calender and also google c
 
 -   Generation of dates was a bit challenging couldnt wrap my head around how to get the dates and their corrresponding days of the week example like (what day of the week is the 3rd of august, 2022). with some google searches i found the solution.
 -   Battled with a bug when i was rendering the days of each month was using keys from the map function, caused a lot of unexpected results, solved it by using uuid to create unique ids.
--   Had challenges in the structuring the date and events to storage for easy crud operations , kept bumping into problems of storing it properly, had a lot of overriding issues instead of it appending to previous data. solved it by a lot of console logging and patience lol ;);
+-   Had challenges in the structuring the date and events to storage for easy crud operations , kept bumping into problems of storing it properly, had a lot of overriding issues instead of it appending to previous data. solved it by a lot of console logging and patience lol ;)
 
 ### Built with
 
