@@ -2,7 +2,7 @@
 
 ## Overview
 
-Calendly is a scheduling calender application where users can create, edit and also delete events created by them.
+Calendly is a scheduling calender application where users can create, edit and also delete events.
 
 ## Images
 - ![Screenshot 2022-06-26 at 20-23-10 Calendly](https://user-images.githubusercontent.com/53101939/175830727-ea9e0659-2991-4ec2-8d84-41ea3e07b148.png)
