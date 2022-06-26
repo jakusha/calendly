@@ -18,7 +18,7 @@ Calendly is a scheduling calender application where users can create, edit and a
 - ![Screenshot 2022-06-26 at 20-23-58 Calendly](https://user-images.githubusercontent.com/53101939/175830758-3210a16a-5f82-4de3-9290-63527891742d.png)
 
 
-- [Live Preview](http://calender-app-beta.vercel.app/)
+- Live Preview : http://calender-app-beta.vercel.app/
 
 
 ## My process
