@@ -117,15 +117,18 @@ const StyledDiv = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
-	min-height: 100vh;
+	height: 100%;
+	overflow: auto;
 	width: 100vw;
 	background: rgb(100 88 88 / 80%);
 	display: grid;
 	place-content: center;
 	z-index: 103;
+	padding: 32px;
 `;
 const StyledForm = styled.div`
 	border-radius: 8px;
+	height: max-content;
 	width: min(80vw, 600px);
 	background: white;
 	padding: 32px;

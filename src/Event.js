@@ -3,7 +3,6 @@ import styled from "styled-components";
 import EditForm from "./EditForm";
 import EventForm from "./EventForm";
 import EventModal from "./EventModal";
-
 import { getDateData, months, converTimeToAMPm } from "./utils/allinfo";
 
 const Event = ({ setGlobalEvent, globalEvent, theme }) => {

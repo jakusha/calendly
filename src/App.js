@@ -36,8 +36,11 @@ function App() {
 		setCalenderDates(() =>
 			createCalendarDates(cal.getFullYear(), cal.getMonth())
 		);
+
+		const day = cal.getDay() === 0 ? days[6] : days[cal.getDay() - 1];
+
 		setGlobalEvent({
-			day: days[cal.getDay() - 1],
+			day,
 			date: cal.getDate(),
 			month: months[cal.getMonth()],
 			events: [],
